@@ -3,9 +3,14 @@
 这是首页
 {% endblock %}
 {% block body %}
-	<form method='post'>
-		{{ form.csrf_token() }}
-		{{ form.name.label }}{{ form.name}}
-		{{ form.submit }}
-	</form>
+	{% if not name: %}
+		<form method='post'>
+			{{ form.csrf_token() }}
+			{{ form.name.label }}{{ form.name}}
+			{{ form.submit }}
+		</form>
+	{% endif %}
+	{% if name: %}
+		<p>hello {{ name }}</p>
+	{% endif %}
 {% endblock %}

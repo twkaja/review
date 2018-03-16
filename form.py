@@ -20,8 +20,10 @@ class NameForm(FlaskForm):
 def index():
 
     form = NameForm()
-
-    return render_template('index.html', form=form)
+    if form.validate_on_submit():
+        return render_template('index.html', name=form.name.data, form=form)
+    else:
+        return render_template('index.html', name=None, form=form)
 @app.route('/user/<name>', methods=['GET', 'POST'])
 def user(name):
     return render_template('user.html', name=name)
