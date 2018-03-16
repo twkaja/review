@@ -3,5 +3,9 @@
 这是首页
 {% endblock %}
 {% block body %}
-这是主页
+	<form method='post'>
+		{{ form.csrf_token() }}
+		{{ form.name.label }}{{ form.name}}
+		{{ form.submit }}
+	</form>
 {% endblock %}
