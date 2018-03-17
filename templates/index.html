@@ -3,14 +3,13 @@
 这是首页
 {% endblock %}
 {% block body %}
-	{% if not name: %}
+		{% for message in get_flashed_messages() %}
+			<p>{{ message }}</p>
+		{% endfor %}
 		<form method='post'>
 			{{ form.csrf_token() }}
 			{{ form.name.label }}{{ form.name}}
 			{{ form.submit }}
 		</form>
-	{% endif %}
-	{% if name: %}
-		<p>hello {{ name }}</p>
-	{% endif %}
+		<p>hello {% if name %}{{ name }}{% else %} stranger {% endif %}</p>
 {% endblock %}
